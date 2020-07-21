@@ -1,0 +1,72 @@
+{% extends "home_layout.html" %}
+{% block pagetitle %}
+  ISBN {{book_id}}: {{book_title}}
+{% endblock %}
+
+{% block navigationleft %}
+    <form action="{{ url_for('home_book_results')}}" method="post" >
+        <input name="searchby" type="hidden" value="{{searchby}}"/>
+        <input name="search-input" type="hidden" value="{{searchinput}}"/>
+        <input type="image" name="submit" border="0" src="{{url_for('static', filename='icns/back.png')}}" style="height:1.5em">  <span>&nbsp;&nbsp;home/{{searchinput}}/ISBN:{{book_id}}</span>
+    </form>
+{% endblock %}
+{% block bookdetailsection %}
+    <div id="book-results-section">
+        <div id="book-details-section">
+            <h3>{{book_title}}</h3><br>
+            <div id="details-book-picture">
+              <img class="contain" src="{{url_for('static', filename='icns/book.png')}}" alt="aBook">
+            </div>
+            <div id="details-book-details">
+              <p><b>Author:</b> {{book_author}}</p>
+              <p><b>ISBN:</b> {{book_id}}</p>
+              <p><b>Year:</b> {{book_year}}</p>
+              <hr>
+              <a href="https://www.goodreads.com"><img class="contain" src="{{url_for('static', filename='icns/goodreads.png')}}" alt="aBook" style="width:8em; padding-bottom:0.5em;"></a>
+              <br><b>Rratings:</b> {{gr_count}}
+              <p><b>Average rating:</b> {{gr_avg}}/5</p>
+            </div>
+        </div>
+        <hr>
+        <div id="book-reviews-section">
+          <form action="{{ url_for('home_book_review')}}" method="post" style="text-align: center; font-size:1.1em;">
+              <input name="book_id"    type="hidden" value="{{book_id}}"/>
+              <input name="book_title" type="hidden" value="{{book_title}}"/>
+              <input name="book_author"type="hidden" value="{{book_author}}"/>
+              <input name="book_year"  type="hidden" value="{{book_year}}"/>
+              <input name="gr_count"  type="hidden" value="{{gr_count}}"/>
+              <input name="gr_avg"  type="hidden" value="{{gr_avg}}"/>
+              <input name="searchby"   type="hidden" value="{{searchby}}"/>
+              <input name="searchinput" type="hidden" value="{{searchinput}}"/>
+              <input name="user_review_id"    type="hidden" value="{{user_review_id}}"/>
+              <input name="user_review_comment"    type="hidden" value="{{user_review_comment}}"/>
+              <input name="user_review_rating"    type="hidden" value="{{user_review_rating}}"/>
+            {% if user_review_id %}
+              <input id="clickable-isbn" type="submit" value="Modify your review."/>
+            {% else %}
+              <input id="clickable-isbn" type="submit" value="Leave a review."/>
+            {% endif %}
+          </form>
+            <h5>Average Rating: {{local_rating_avg}} </h5>
+            <h4>User Reviews:</h4>
+            <ul>
+            {% for review in all_reviews %}
+                <li>
+                    <b> {{review.user_id }}</b>:&nbsp;
+                    {% for i in range(5) %}
+                        {% if i< review.rating: %}
+                        <span class="fa fa-star checked"></span>
+                        {% else: %}
+                        <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    &nbsp;{{review.rating}}/5
+                    <br>{{review.comment}}
+                </li><br>
+            {% else %}
+                <p>No reviews for this book yet.</p>
+            {% endfor%}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

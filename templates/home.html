@@ -1,0 +1,55 @@
+{% extends "home_layout.html" %}
+{% block pagetitle %}
+  {{personname}}: Home
+{% endblock %}
+
+
+{% block navigationleft %}
+  home/
+{% endblock %}
+
+{% block heading %}
+{% endblock %}
+
+
+{% block searchsection %}
+  <div id="search-container">
+      <p>Search books by:</p>
+      <form id="search-form" action="{{ url_for('home_book_results')}}" method="post" >
+          <input class="search-radio-op" type="radio" name="searchby" value="id"> ISBN
+          <input class="search-radio-op" type="radio" name="searchby" value="title" checked> Title
+          <input class="search-radio-op" type="radio" name="searchby" value="author"> Author
+          <br><input id="search-input" type="text" name="search-input" placeholder="Type ISBN, title or author of the book you want to search." autocomplete="off"><br><br>
+          <button type="submit">Search</button>
+      </form>
+      {% if top_5_books %}
+      <div id="book-results-section">
+          <br>
+          <br>
+          <h5 style="text-align:left;">Top 5 rated books</h5><br>
+          <table id="book-results-table" class="table table-hover">
+             <thead>
+               <tr>
+                 <th>Rating</th>
+                 <th>ISBN</th>
+                 <th>Title</th>
+                 <th>Author</th>
+                 <th>Year</th>
+               </tr>
+             </thead>
+             <tbody>
+             {% for book in top_5_books %}
+                 <tr>
+                   <td>{{ book[0] }}</td>
+                   <td>{{ book[1] }}</td>
+                   <td>{{ book[2] }}</td>
+                   <td>{{ book[3] }}</td>
+                   <td>{{ book[4] }}</td>
+                 </tr>
+              {% endfor %}
+             </tbody>
+           </table>
+      </div>
+      {% endif %}
+  </div>
+{% endblock %}

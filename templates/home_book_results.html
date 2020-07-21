@@ -1,0 +1,50 @@
+{% extends "home_layout.html" %}
+{% block pagetitle %}
+  Search results for: {{searchinput}}
+{% endblock %}
+
+{% block navigationleft %}
+    <form action="{{ url_for('home')}}" method="post" >
+        <input name="personname" type="hidden" value="{{personname}}"/>
+        <input name="username" type="hidden" value="{{username}}"/>
+        <input type="image" name="submit" border="0" src="{{url_for('static', filename='icns/back.png')}}" style="height:1.5em">  <span>&nbsp;&nbsp;home/{{searchinput}}</span>
+    </form>
+{% endblock %}
+
+{% block searchresults %}
+    <div id="book-results-section">
+      <h4>Search results for {{searchby}} <b>"{{searchinput}}"</b></h4><br>
+      {% if query_results %}
+          <table id="book-results-table" class="table table-hover">
+             <thead>
+               <tr>
+                 <th>ISBN</th>
+                 <th>Title</th>
+                 <th>Author</th>
+                 <th>Year</th>
+               </tr>
+             </thead>
+             <tbody>
+             {% for book in query_results %}
+             <form action="{{ url_for('home_book_details')}}" method="post" >
+                 <input name="book_id"    type="hidden" value="{{book.id}}"/>
+                 <input name="book_title" type="hidden" value="{{book.title}}"/>
+                 <input name="book_author"type="hidden" value="{{book.author}}"/>
+                 <input name="book_year"  type="hidden" value="{{book.year}}"/>
+                 <input name="searchby" type="hidden" value="{{searchby}}"/>
+                 <input name="searchinput" type="hidden" value="{{searchinput}}"/>
+                 <tr>
+                   <td> <input id="clickable-isbn" type="submit" value="{{book.id}}"/></td>
+                   <td>{{ book.title }}</td>
+                   <td>{{ book.author }}</td>
+                   <td>{{ book.year }}</td>
+                 </tr>
+             </form>
+              {% endfor %}
+             </tbody>
+           </table>
+      {% else %}
+          <h4>No results found.</h4><br><p>You are searching by <b>{{searchby}}</b>. Did you select the right search cathegory?</p>
+      {% endif %}
+    </div>
+{% endblock%}

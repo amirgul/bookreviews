@@ -1,0 +1,62 @@
+{% extends "home_layout.html" %}
+{% block pagetitle %}
+  {{personname}}'s review for {{book_title}}
+{% endblock %}
+
+{% block navigationleft %}
+    <form action="{{ url_for('home_book_details')}}" method="post" >
+        <input name="book_id"    type="hidden" value="{{book_id}}"/>
+        <input name="book_title" type="hidden" value="{{book_title}}"/>
+        <input name="book_author"type="hidden" value="{{book_author}}"/>
+        <input name="book_year"  type="hidden" value="{{book_year}}"/>
+        <input name="searchby" type="hidden" value="{{searchby}}"/>
+        <input name="searchinput" type="hidden" value="{{searchinput}}"/>
+        <input type="image" name="submit" border="0" src="{{url_for('static', filename='icns/back.png')}}" style="height:1.5em">  <span>&nbsp;&nbsp;home/{{searchinput}}/ISBN:{{book_id}}/review</span>
+    </form>
+{% endblock %}
+
+{% block writereview %}
+    <div id="book-results-section">
+      <div id="book-details-section">
+          <h3>{{book_title}}</h3><br>
+          <div id="details-book-picture">
+            <img class="contain" src="{{url_for('static', filename='icns/book.png')}}" alt="aBook" style="width:11em;">
+          </div>
+          <div id="details-book-details">
+            <p><b>Author:</b> {{book_author}}</p>
+            <p><b>ISBN:</b> {{book_id}}</p>
+            <p><b>Year:</b> {{book_year}}</p>
+            <hr>
+            <a href="https://www.goodreads.com"><img class="contain" src="{{url_for('static', filename='icns/goodreads.png')}}" alt="aBook" style="width:8em; padding-bottom:0.5em;"></a>
+            <br><b>Rratings:</b> {{gr_count}}
+            <p><b>Average rating:</b> {{gr_avg}}/5</p>
+          </div>
+      </div>
+      <hr>
+      <div><br>
+          <form action="home_book_details" method="post">
+            <input name="book_id"    type="hidden" value="{{book_id}}"/>
+            <input name="book_title" type="hidden" value="{{book_title}}"/>
+            <input name="book_author"type="hidden" value="{{book_author}}"/>
+            <input name="book_year"  type="hidden" value="{{book_year}}"/>
+            <input name="searchby" type="hidden" value="{{searchby}}"/>
+            <input name="searchinput" type="hidden" value="{{searchinput}}"/>
+              {% if user_review_id %}
+              <div>
+                  <label for="new_rating">Rating: &nbsp;</label>1&nbsp;
+                  <input type="range" id="user-review-rating" name="new_rating" min="1" max="5" value="{{user_review_rating}}" step="1">&nbsp;5
+              </div>
+              <textarea class="form-control" name="new_comment" rows="5" cols="40" value="What do you think about this book?">{{user_review_comment}}</textarea>
+              {% else %}
+                <div>
+                    <label for="new_rating">Rating: &nbsp;</label>1&nbsp;
+                    <input type="range" id="user-review-rating" name="new_rating" min="1" max="5" value="3" step="1">&nbsp;5
+                </div>
+                <textarea class="form-control" name="new_comment" rows="5" cols="40" placeholder="What do you think about this book?"></textarea>
+            {% endif %}
+            <br>
+            <input type="submit" class="a-button login-button">
+          </form>
+      </div>
+    </div>
+{% endblock %}

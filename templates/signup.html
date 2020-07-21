@@ -1,0 +1,36 @@
+{% extends "log_layout.html" %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block navigation%}
+<a class="nav-item nav-link" href="{{ url_for('login') }}" role="tab" aria-controls="nav-home" >Login</a>
+<a class="nav-item nav-link active" role="tab" aria-controls="nav-profile">Sign Up</a>
+{% endblock %}
+
+{% block body %}
+    <form class="form-content" action="{{ url_for('signup_success')}}" method="post">
+      <div class="form-container">
+        {% if errormsg  %}
+            <div id="signup-error-message">
+              <p>{{errormsg}}</p>
+            </div>
+        {% endif %}
+        <label for="personname"><b>Name</b></label>
+        <input type="text" pattern="^[a-zA-Z]{3,}$" placeholder="How may we address you?" name="personname" required>
+        <br>
+        <label for="username"><b>New Username</b></label>
+        <input type="text" pattern="^[a-zA-Z0-9]{3,}$"placeholder="Letters or numbers accepted." name="username" required>
+        <br>
+        <label for="pswd"><b>New Password</b></label>
+        <input type="password" pattern="^[a-zA-Z0-9!?@#$%^&*()-_]{3,}$" placeholder="No spaces, at least 4 characters long." name="pswd" required>
+        <br><br>
+        <div id="signupcancel-container">
+          <button type="submit" class="a-button signup-button">Sign Up</button>
+        </div>
+      </div>
+    </form>
+
+
+{% endblock %}

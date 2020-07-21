@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='icns/book.png') }}">
+    </head>
+    <body>
+        <div id="log_container" class="container">
+          <div class="imgcontainer">
+            <img src="{{url_for('static', filename='icns/book.png')}}" style="width:10em" alt="Avatar" class="avatar">
+          </div>
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              {% block navigation%}
+              {% endblock %}
+            </div>
+          </nav>
+          {% block body %}
+          {% endblock %}
+        </div>
+    </body>
+</html>

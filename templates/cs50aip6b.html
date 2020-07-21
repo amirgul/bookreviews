@@ -1,0 +1,80 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>      <link rel="shortcut icon" href="{{ url_for('static', filename='icns/search.png') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+      <title>
+        {% block pagetitle %}
+        {% endblock %}
+      </title>
+    </head>
+    <body>
+      <nav id="home-navigation"class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div id="navbar-center-sectino" class="w-100 order-1 " style="color:white;">
+
+                <h4>Project 6B: Questions</h4>
+                <h5>CS50 Introduction to Artificial Intelligence</h5>
+          </div>
+      </nav>
+          {% block searchsection %}
+          <br>
+          <div id="p6_instructions">
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                        More information about this project.
+                      </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" data-parent="#accordion">
+                      <div class="card-body" style="text-align:left;">
+                        <p>Given a user query, this program uses TF-IDF (a technique that attempts to quantify the importance of words in documents) to find a sentence in the contents of Wikipedia.org that answers the given query.</p>
+                        <p>Evey time the user enters a query, the programs uses the top 5 most relevant pages to attempt to find a sentence that best answers the query. Sometimes the results may cause an exception (that I haven't tought about) and that would cause an "Internal Server Error". I apologize in advance for that. However you can always go back and try a different query.</p>
+                        <p>The answers given by the program vary from time to time and often they are not the best possile answer available in Wikipedia.</p>
+                        <p>Currently the queries are processed minimally using lemmatization and tokenization. A better manipulation of the user query would mean better results. </p>
+                        <p>Examples of queries given on the instructions for this project:</p>
+                        <ul>
+                          <li>What are the types of supervised learning?</li>
+                          <li>When was Python 3.0 released?</li>
+                          <li>How do neurons connect in a neural network?</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div id="search-container">
+              <form id="search-form" action="{{ url_for('cs50aip6b')}}" method="post" >
+                  <input id="search-input" type="text" name="search-input" placeholder="Type your query here." autocomplete="off"><br><br>
+                  <button type="submit">Search</button>
+              </form>
+              <br><br><br>
+          </div>
+        {% endblock %}
+        {% if wiki_answers %}
+          <div id="book-results-section">
+            <div class="showing-answers">
+                <br>
+                <p>Showing answers for query <b>{{searchinput}}</b></p>
+                {% for answer_i in wiki_answers %}
+                    <h5> {{answer_i}} </h5><br>
+                {% endfor %}
+              </div>
+          </div>
+        {% else %}
+            {% if searchinput!= None %}
+                <div id="book-results-section">
+                  <p>No answers found for query {{searchinput}}</p>
+                </div>
+            {% endif%}
+        {% endif %}
+
+    </body>
+</html>

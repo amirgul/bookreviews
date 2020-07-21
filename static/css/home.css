@@ -1,0 +1,190 @@
+html{
+zoom: 85%;
+}
+#home-navigation{
+    padding: 2em;
+    flex-wrap: nowrap;
+}
+#navbar-right-sectino{
+    text-align: right;
+}
+#navbar-center-sectino{
+    text-align: center;
+}
+#person-name{
+  font-weight: bold;
+}
+#user-name{
+  font-weight: bold;
+  color: #aaa;
+}
+
+#search-container{
+  text-align: center;
+  margin-top: 3em;
+}
+.search-radio-op{
+    width: 1em;
+    margin-bottom: 1em;
+    margin-left: 2em;
+}
+#search-form input[type=text] {
+  text-align: center;
+  min-width: 40em;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 2.5em;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+#search-form button {
+  padding: 7px;
+  border: 1px solid #eee;
+  width: 6em;
+  background: #eee;
+  color: #555;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+#search-form button:hover {
+  box-shadow: 0px 1px 8px rgba(0,0,0,.5);
+}
+
+#search-form::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+#p6_instructions{
+  font-size: 1.2em;
+  text-align: center;
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 80%;
+  margin-left: 10%;
+}
+#p6_instructions .card, .card-header{
+  border: 0px;
+  background-color: inherit;
+}
+
+#book-results-section{
+  padding-top: 1em;
+  text-align: center;
+  width: 90%;
+  margin:auto;
+  max-width: 900px;
+}
+#clickable-isbn{
+  background-color: inherit;
+  border: 0px solid #fff;
+  color: #0048b1;
+  font-weight: bold;
+  font-size: 1em;
+}
+#clickable-isbn:hover{
+  text-shadow: 1px 1px #000;
+  color: #0062db;
+  cursor: pointer;
+}
+#book-details-section{
+  width: 80%;
+  margin: auto;
+  margin-bottom: 2em;
+}
+#details-book-picture{
+  text-align: right;
+  float:left;
+  width: 45%;
+}
+#details-book-picture>img{
+  width: 11em;
+}
+#details-book-details{
+  text-align: left;
+  margin-left: 50%;
+}
+
+#book-reviews-section{
+  margin-top: 1em;
+  text-align: left;
+}
+.checked {
+  color: orange;
+}
+textarea {
+    letter-spacing: 1px;
+    font-size: 1em;
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+}
+textarea:focus {
+  border: 1px solid #8bc34a;
+  box-shadow: 0 0 0 0.2rem rgba(139, 195, 74, .25);
+}
+/* Set a style for all buttons */
+.a-button {
+  display:inline-block;
+  padding: 14px 20px;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width:12em;
+  border-radius: 15em;
+}
+.a-button:hover {
+  opacity: 0.8;
+}
+.login-button {
+  background-color: #2d8feb;
+}
+
+@media (min-width: 550px) {
+}
+
+@media (max-width: 549px) {
+
+  #book-results-section{
+    padding-top: 1em;
+    text-align: center;
+    margin: 0px;
+    width: 100%;
+  }
+  #book-results-section .showing-answers{
+  margin-left: 1em;
+  margin-right: 1em;
+  }
+  #book-details-section{
+    width: 95%;
+  }
+  #details-book-picture{
+    width: 40%;
+    margin-top: 10%;
+  }
+  #details-book-picture>img{
+    width: 8em;
+  }
+  #book-reviews-section {
+  margin-left: 1.5em;
+  }
+  #search-form input[type=text] {
+    min-width: 90%;
+  }
+  #p6_instructions{
+    font-size: 1.1em;
+    width: 100%;
+    margin-left:0px;
+  }
+}

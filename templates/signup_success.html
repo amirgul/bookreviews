@@ -1,0 +1,23 @@
+{% extends "log_layout.html" %}
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block navigation%}
+<a class="nav-item nav-link" href="{{ url_for('login') }}" role="tab" aria-controls="nav-home" >Login</a>
+<a class="nav-item nav-link active" role="tab" aria-controls="nav-profile">Sign Up</a>
+{% endblock %}
+
+{% block body %}
+  <div id="success-message">
+      <br><br>
+      <p> Congratulations {{personname}}! <br>
+          Your new account with username <b>{{username}}</b><br> has been succesfuly created.
+      </p><br>
+      <p>
+        You may go a head and login!
+      </p>
+      <br><br>
+  </div>
+{% endblock %}

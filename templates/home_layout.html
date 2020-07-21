@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='icns/search.png') }}">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+      <title>
+        {% block pagetitle %}
+        {% endblock %}
+      </title>
+    </head>
+    <body>
+      <nav id="home-navigation"class="navbar navbar-expand-lg navbar-light bg-light"> <!-- "navbar navbar-expand-md navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light -->
+
+          <div id="navbar-left-sectino" class=" w-33 order-0">
+              {% block navigationleft %}
+              {% endblock %}
+          </div>
+          <div id="navbar-center-sectino" class="w-33 order-1 ">
+              <image src="{{url_for('static', filename='icns/person.png')}}" style="width:1.8em"> <span id="person-name">{{personname}}</span>
+              <br><span id="user-name">Username: {{username}}</span>
+          </div>
+          <div id="navbar-right-sectino" class="w-33 order-2 ">
+            <a href="{{ url_for('logout') }}" ><image src="{{url_for('static', filename='icns/logout.png')}}" style="width:1.5em">   Log Out</a>
+          </div>
+      </nav>
+
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block searchsection %}
+        {% endblock %}
+
+        {% block searchresults %}
+        {% endblock%}
+
+        {% block bookdetailsection %}
+        {% endblock%}
+        {% block writereview  %}
+        {% endblock %}
+    </body>
+</html>

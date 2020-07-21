@@ -1,0 +1,105 @@
+html{
+zoom: 85%;
+}
+.form-container{
+    text-align: left;
+    width: 90%;
+    margin-left: 5%;
+}
+
+label {
+  margin-bottom: 0px;
+}
+#success-message{
+    text-align: center;
+}
+#login-error-message, #signup-error-message{
+    text-align: center;
+    color: red;
+    font-size: 0.9em;
+}
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.a-button {
+  display:inline-block;
+  padding: 14px 20px;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width:12em;
+  border-radius: 15em;
+}
+
+.a-button:hover {
+  opacity: 0.8;
+}
+
+#signupcancel-container{
+  text-align: center;
+}
+.signup-button{
+  background-color: #2d8feb;
+}
+/* Extra styles for the cancel button */
+.login-button {
+  background-color: #10bc8b;
+}
+
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+  padding-top: 1.5em;
+}
+
+img.avatar {
+  width: 60%;
+  /*border-radius: 50%;*/
+}
+
+.container {
+  /* text-align: center;
+  padding: 5em; */
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+
+
+
+@media (min-width: 550px) {
+  .container{
+    margin-top: 5%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .form-container{
+      padding: 3em;
+  }
+}
+
+@media (max-width: 549px) {
+  .container {
+    width: 100%;
+  }
+  .form-container{
+      padding: 3em 0em 3em 0em;
+  }
+}
